@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { contactsReducer } from './contacts/contacts-reducers';
 
+//-----------------------------------------------------//
+
 const store = configureStore({
   reducer: {
-    contacts: persistedReducer,
+    contacts: contactsReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
