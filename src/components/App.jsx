@@ -7,6 +7,7 @@ import {
   errorSelector,
   loadingSelector,
 } from 'redux/contacts/contacts-selectors';
+import { MutatingDots } from 'react-loader-spinner';
 
 const App = () => {
   const customError = useSelector(errorSelector);
@@ -30,9 +31,19 @@ const App = () => {
         {customError && <p>{customError}</p>}
         {!customError && <ContactList />}
         {loading && (
-          <p>
-            <b>Working...</b>
-          </p>
+          <div display="block" marginLeft="auto" marginRight="auto">
+            <MutatingDots
+              height="200"
+              width="200"
+              color="#211022"
+              secondaryColor="#00ccff"
+              radius="20"
+              ariaLabel="mutating-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          </div>
         )}
       </Section>
     </div>
