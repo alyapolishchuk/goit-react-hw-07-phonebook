@@ -1,16 +1,16 @@
 import { addUser, deleteUser, filterUser, getUsers } from './contscts-actions';
-import { createReducer } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
 //----------------------------------------------------------------//
 
 const itemReducer = createReducer([], {
   [getUsers.fulfilled]: (_, { payload }) => payload,
-  [addUser.fulfilled]: (_, { payload }) => payload,
-  [deleteUser.fulfilled]: (_, { payload }) => payload,
+  [addUser.fulfilled]: (state, { payload }) => [...state, payload],
+  [deleteUser.fulfilled]: (state, { payload }) =>
+    state.filter(({id}) => id !== payload),
 });
 
 const filterReducer = createReducer('', {
-  [filterUser.type]: (_, { payload }) => payload,
+  [filterUser]: (_, { payload }) => payload,
 });
 
 const errorReducer = createReducer('', {
